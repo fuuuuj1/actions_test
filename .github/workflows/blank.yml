@@ -12,8 +12,10 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # build 
-    if: contains(fromJSON('["test", "testing"]'), github.event.pull_request.title) || 
-      contains(github.event.pull_request.labels.*.name, 'with testing')
+    # actionsを実行する条件
+    # プルリクエストのタイトルに [test] または [testing]が含まれている
+    # または with testing のラベルが付与されている
+    if: contains(github.event.pull_request.labels.*.name, 'with testing') || contains(fromJSON('["[test]", "[testing]"]'), github.event.pull_request.title)
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -21,13 +23,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      
+      # show pull request title
+      - name: Show pull request title
+        run: echo ${{ github.event.pull_request.title }}
+      
+      # show pull request labels name
+      # array ではなく、全ての名前を表示する
+      - name: Show pull request labels name
+        run: echo ${{ join(github.event.pull_request.labels.*.name, ', ') }}
+      
