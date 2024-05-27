@@ -33,3 +33,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      
+      # show pull request title
+      - name: Show pull request title
+        run: echo ${{ github.event.pull_request.title }}
+      
+      # show pull request labels
+      - name: Show pull request labels
+        run: echo ${{ github.event.pull_request.labels.*.name }}
