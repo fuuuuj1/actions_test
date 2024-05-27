@@ -7,8 +7,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  build_testing:
     # actionsを実行する条件
     # * プルリクエストのタイトルに [WT] または [WIP]が含まれていない
     # * with out testing のラベルが付与されていない
