@@ -15,8 +15,7 @@ jobs:
     # actionsを実行する条件
     # プルリクエストのタイトルに [test] または [testing]が含まれている
     # または with testing のラベルが付与されている
-    if: contains(fromJSON('["[test]", "[testing]"]'), github.event.pull_request.title) || 
-      contains(github.event.pull_request.labels.*.name, 'with testing')
+    if: contains(github.event.pull_request.labels.*.name, 'with testing') || contains(fromJSON('["[test]", "[testing]"]'), github.event.pull_request.title)
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
