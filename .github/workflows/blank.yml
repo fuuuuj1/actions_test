@@ -12,8 +12,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # actionsを実行する条件
-    # プルリクエストのタイトルに [WT] または [WIP]が含まれていない
-    # または with out testing のラベルが付与されていない
+    # * プルリクエストのタイトルに [WT] または [WIP]が含まれていない
+    # * with out testing のラベルが付与されていない
     if: ${{ !contains(github.event.pull_request.labels.*.name, 'with out testing') && !contains(fromJSON('["[WT]", "[WIP]"]'), github.event.pull_request.title) }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
