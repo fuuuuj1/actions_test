@@ -28,7 +28,7 @@ jobs:
         run: echo ${{ github.event.pull_request.title }}
       
       # show pull request labels name
-      # array ではなく、全ての名前を表示する
+      # array ではなく、全ての名前を表示するため、join を使用
       - name: Show pull request labels name
         run: echo ${{ join(github.event.pull_request.labels.*.name, ', ') }}
       
