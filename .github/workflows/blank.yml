@@ -41,5 +41,5 @@ jobs:
       # show pull request labels name
       # array で取得されるため全て展開するために fromJSON を使用
       - name: Show pull request labels
-        run: echo ${{ fromJSON(github.event.pull_request.labels.*.name) }}
+        run: echo ${{ fromJSON('github.event.pull_request.labels.*.name') }}
       
