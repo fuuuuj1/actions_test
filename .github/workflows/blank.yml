@@ -13,9 +13,9 @@ jobs:
   build:
     # build 
     # actionsを実行する条件
-    # プルリクエストのタイトルに [test] または [testing]が含まれている
-    # または with testing のラベルが付与されている
-    if: contains(github.event.pull_request.labels.*.name, 'with testing') || contains(fromJSON('["[test]", "[testing]"]'), github.event.pull_request.title)
+    # プルリクエストのタイトルに [WT] または [WIP]が含まれていない
+    # または with out testing のラベルが付与されていない
+    if: ! contains(github.event.pull_request.labels.*.name, 'with out testing') || ! contains(fromJSON('["[WT]", "[WIP]"]'), github.event.pull_request.title)
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
